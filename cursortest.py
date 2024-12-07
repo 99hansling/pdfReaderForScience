@@ -32,22 +32,9 @@ def format_research_paper(text):
     """
     # 分割文本为段落
     paragraphs = text.split('\n')
-    
-    # 如果没有内容，直接返回
     if not paragraphs:
         return ""
-        
-    # 获取第一段作为标题
-    title = paragraphs[0]
-    print(f"\n标题: {title}")
-    
-    # 存储处理后的文本
-    formatted_text = [f"标题\n{'='*4}\n{title}"]
-    
-    # 当前正在处理的文本
-    current_text = []
-    current_section = None
-    
+
     # 定义章节关键词
     sections = {
         '摘要': ['摘要', 'abstract'],
@@ -59,47 +46,64 @@ def format_research_paper(text):
         '结论': ['结论', '总结', 'conclusion'],
         '参考文献': ['参考文献', 'references']
     }
-    
-    # 从第二段开始处理
-    for para in paragraphs[1:]:
+
+    formatted_text = []
+    current_section = None
+    current_text = []
+    is_title = True  # 标记是否在标题部分
+
+    # 处理每个段落
+    for para in paragraphs:
         para = para.strip()
         if not para:
             continue
-            
+
         # 检查是否是章节标题
         is_section = False
         for section, keywords in sections.items():
             if any(keyword in para.lower() for keyword in keywords):
-                # 如果有之前的章节内容，保存它
+                # 如果是第一个找到的章节（通常是摘要），先处理之前的内容作为标题
+                if is_title:
+                    if current_text:
+                        formatted_text.append("标题\n====")
+                        formatted_text.append('\n'.join(current_text))
+                    is_title = False
+                    current_text = []
+
+                # 保存之前章节的内容
                 if current_section and current_text:
                     formatted_text.append(f"\n{current_section}\n{'='*len(current_section)}")
                     formatted_text.append('\n'.join(current_text))
-                
-                # 开始新的章节
+
                 current_section = section
                 current_text = []
                 is_section = True
                 print(f"找到章节: {section}")
                 break
-        
+
         # 如果不是章节标题，添加到当前文本
         if not is_section:
             current_text.append(para)
-    
-    # 保存最后一个章节的内容
-    if current_section and current_text:
+
+    # 处理最后一个章节的内容
+    if is_title and current_text:
+        # 如果整篇文章都没有找到章节，把所有内容作为标题
+        formatted_text.append("标题\n====")
+        formatted_text.append('\n'.join(current_text))
+    elif current_section and current_text:
+        # 保存最后一个章节的内容
         formatted_text.append(f"\n{current_section}\n{'='*len(current_section)}")
         formatted_text.append('\n'.join(current_text))
-    
+
     # 合并所有文本
     final_text = '\n\n'.join(formatted_text)
     print(f"\n最终文本长度: {len(final_text)}")
-    
-    # 如果没有识别到任何章节，直接使用原始文本
+
+    # 如果没有识别到任何内容，返回原始文本
     if len(final_text.strip()) == 0:
         print("未识别到章节，使用原始文本")
         final_text = text
-        
+
     return final_text
 
 def read_pdf(pdf_path):
@@ -236,7 +240,7 @@ def main():
             extracted_text = read_pdf(pdf_path)
             print("\n提取的文本内容：")
             print("-" * 50)  # 添加分隔线
-            print(extracted_text)
+            print(extracted_text[:200])
             print("-" * 50)  # 添加分隔线
             
             # 保存到Word文件
