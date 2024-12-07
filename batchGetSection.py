@@ -42,8 +42,8 @@ def extract_sections(text):
     # 定义章节标题的正则模式
     patterns = {
         'abstract': r'(?i)(abstract|摘要)\s*\n',
-        'introduction': r'(?i)(1\.?\s+)?(introduction|overview)\s*\n',  # 添加 overview 匹配
-        'conclusions': r'(?i)(\d+[\.\s]+)?(conclusions?|结论)\s*\n'
+        'introduction': r'(?i)(1\.?\s+)?(introduction|overview)\s*\n',
+        'conclusions': r'(?i)(\d+[\.\s]+)?(conclusions?|discussion|summary|结论)\s*\n'
     }
     
     # 定义数字编号章节的模式
