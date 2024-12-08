@@ -1,0 +1,21 @@
+从文件 Efficient E xpert P runing for Sparse.pdf 中提取的参考文献：
+==================================================
+
+[1] Nima Aghli and Eraldo Ribeiro. Combining weight pruning and knowledge distillation for
+cnn compression. In Proceedings of the IEEE/CVF conference on computer vision and pattern
+recognition , pages 3191–3198, 2021.
+
+[3] Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, Antoine Miech, Iain Barr, Yana Has-
+son, Karel Lenc, Arthur Mensch, Katherine Millican, Malcolm Reynolds, Roman Ring,
+Eliza Rutherford, Serkan Cabi, Tengda Han, Zhitao Gong, Sina Samangooei, Marianne
+Monteiro, Jacob L Menick, Sebastian Borgeaud, Andy Brock, Aida Nematzadeh, Sahand
+Sharifzadeh, Mikoł aj Bi ´nkowski, Ricardo Barreira, Oriol Vinyals, Andrew Zisserman, and
+Karén Simonyan. Flamingo: a visual language model for few-shot learning. In S. Koyejo,
+S. Mohamed, A. Agarwal, D. Belgrave, K. Cho, and A. Oh, editors, Advances in Neu-
+ral Information Processing Systems , volume 35, pages 23716–23736. Curran Associates,
+Inc., 2022. URL https://proceedings.neurips.cc/paper_files/paper/2022/file/
+960a172bc7fbf0177ccccbb411a7d800-Paper-Conference.pdf .
+
+[6] Davis Blalock, Jose Javier Gonzalez Ortiz, Jonathan Frankle, and John Guttag. What is the state
+of neural network pruning? Proceedings of machine learning and systems , 2:129–146, 2020.
+
